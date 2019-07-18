@@ -11,6 +11,8 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 const cors = require('cors')
 app.use(cors())
 
+app.use(express.static('build'))
+
 let persons = [
     {
         "name": "Arto Hellas",
@@ -102,7 +104,7 @@ app.get('/api/persons', (req, res) => {
     res.json(persons)
 })
 
-const port = 3001
+const port = process.env.PORT || 3001
 app.listen(port, () => {
     console.log(`server running on port ${port}`)
 })
